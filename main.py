@@ -5,7 +5,23 @@ def main():
     chars_dict = get_char_count(text)
     report_list = convert_dict(chars_dict)
     report_list.sort(reverse=True, key=report_sort)
-    print(report_list)
+    print_report(report_list, word_count, book_path)
+
+def print_report(list, words, path):
+    print(f"--- Begin report of {path} ---")
+    print(f"There are {words} words found in the document.")
+    letters = []
+    counts = []
+    for dict in list:
+        for key in dict:
+            if key == "letter":
+                letters.append(dict[key])
+            if key == "num":
+                counts.append(dict[key])
+    for i in range(0, len(letters)):
+        print(f"The '{letters[i]}' character was found {counts[i]} times.")
+        
+    print("--- End of report ---")
     
 def convert_dict(dict):
     new_list = []
